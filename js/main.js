@@ -9,8 +9,8 @@ function slideNavigation(){
         },
 
         slideWidth: $('.navigation').width(),
-        touchstartx: undefined,
-        touchmovex: undefined,
+        touchStartX: undefined,
+        touchMoveX: undefined,
 
         init: function() {
             this.bindEvents();
@@ -31,13 +31,13 @@ function slideNavigation(){
 
         start: function(event) {
 
-            this.touchstartx =  event.originalEvent.touches[0].pageX;
+            this.touchStartX =  event.originalEvent.touches[0].pageX;
             $('.animate').removeClass('animate');
         },
 
         move: function(event) {
-            this.touchmovex =  event.originalEvent.touches[0].pageX;
-            this.movex = (this.touchmovex - this.touchstartx);
+            this.touchMoveX =  event.originalEvent.touches[0].pageX;
+            this.movex = (this.touchMoveX - this.touchStartX);
             var movexBack = this.slideWidth + this.movex;
             if (this.movex < this.slideWidth && this.movex > 0) {
                 this.el.imgSlide.css('transform','translate3d(' + this.movex + 'px,0,0)');
@@ -49,12 +49,12 @@ function slideNavigation(){
 
         end: function() {
 
-            var distanceMove = this.slideWidth + (this.touchstartx - this.touchmovex);
+            var distanceMove = this.slideWidth + (this.touchStartX - this.touchMoveX);
             var distanceSwap = Math.abs(this.slideWidth - distanceMove);
 
-            if(distanceSwap > this.slideWidth/2 && this.touchstartx < this.touchmovex){
+            if(distanceSwap > this.slideWidth/2 && this.touchStartX < this.touchMoveX){
                 this.el.imgSlide.addClass('animate').css('transform', 'translate3d(' + this.slideWidth + 'px,0,0)');
-            } else if (distanceSwap < this.slideWidth/2 && this.touchstartx > this.touchmovex) {
+            } else if (distanceSwap < this.slideWidth/2 && this.touchStartX > this.touchMoveX) {
                 this.el.imgSlide.addClass('animate').css('transform', 'translate3d(' + this.slideWidth + 'px,0,0)');
             } else {
                 this.el.imgSlide.addClass('animate').css('transform', 'translate3d(' + 0 + 'px,0,0)');
