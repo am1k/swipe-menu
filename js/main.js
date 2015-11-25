@@ -3,7 +3,6 @@ function slideNavigation(){
     var swipe = {
 
         el: {
-            slider: $("#slider"),
             holder: $(".holder"),
             imgSlide: $(".slide-image")
         },
