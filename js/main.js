@@ -48,7 +48,13 @@ function slideNavigation(){
         },
 
         end: function() {
-            if(this.touchstartx < this.touchmovex){
+
+            var distanceMove = this.slideWidth + (this.touchstartx - this.touchmovex);
+            var distanceSwap = Math.abs(this.slideWidth - distanceMove);
+
+            if(distanceSwap > this.slideWidth/2 && this.touchstartx < this.touchmovex){
+                this.el.imgSlide.addClass('animate').css('transform', 'translate3d(' + this.slideWidth + 'px,0,0)');
+            } else if (distanceSwap < this.slideWidth/2 && this.touchstartx > this.touchmovex) {
                 this.el.imgSlide.addClass('animate').css('transform', 'translate3d(' + this.slideWidth + 'px,0,0)');
             } else {
                 this.el.imgSlide.addClass('animate').css('transform', 'translate3d(' + 0 + 'px,0,0)');
